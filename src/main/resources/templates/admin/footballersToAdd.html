@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="UTF-8">
+    <title>Gestione degli Atleti</title>
+    
+    <link rel="shortcut icon" href="/images/ball.png" type="image/svg">
+    <link rel="stylesheet" href="/css/stile.css" />
+
+    <link rel="stylesheet" 
+        th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css}" 
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" 
+        crossorigin="anonymous" />
+</head>
+
+<body>
+
+    <header th:replace="/fragments/base.html::intestazione"></header>
+	<BR>
+	<BR>
+	<BR>
+	<BR>
+	<BR>
+
+    <div class="wrapper">
+		<div class="content">
+	    	<div class="container-entity">
+				<h3 style="color:black;" th:text="'Giocatori della squadra '+${team.name}"></h3>		
+				<div th:if="${footballers.isEmpty()}">
+					<h3 style="color:red;" th:text="'Non ci sono giocatori selezionati per questa squadra.'"></h3>	
+				</div>
+				<div th:if="${!footballers.isEmpty()}">
+					<h3 style="color:green;" th:text="'Giocatori che si possono rimuovere dalla squadra:'"></h3>	
+				</div>
+				<ul class="footballers">
+					<li th:each="footballer : ${footballers}">
+						<span  class="entity">
+							<img th:src="@{/image/professional/{id}(id=${footballer.id})}"  width="10%" />
+							<H2><a th:text="${footballer.name}+' '+${footballer.surname}+'('+${footballer.position}+')'"></a></H2>
+							<a th:href="@{'/admin/removeFootballerFromTeam/'+ ${footballer.id}+'/'+${team.id}}">Cancella</a>
+						</span>
+					</li>
+				</ul>
+				
+				<div th:if="${!players.isEmpty()}">
+					<h3 style="color:green;" th:text="'Giocatori che si possono aggiungere alla squadra:'"></h3>	
+				</div>
+				
+				<ul>
+					<li th:each="player : ${players}">
+						<span  class="entity">
+							<img th:src="@{/image/professional/{id}(id=${player.id})}"  width="10%" />	
+							<h2><a th:text="${player.name}+' '+${player.surname}+'('+${player.position}+')'"></a></h2>
+							<a th:href="@{'/admin/addFootballerToTeam/'+ ${player.id}+'/'+${team.id}}">Aggiungi</a>
+						</span>
+					</li>
+					<div>
+						<a th:href="@{'/admin/formUpdateTeam/'+ ${team.id}}"><button style="margin-left:12%;" type="button">Torna alla pagina di aggiornamento</button></a>
+					</div>
+				</ul>
+			 </div>
+		</div>
+	</div>
+	
+    <footer th:replace="/fragments/base.html::footer"></footer>
+
+</body>
+
+</html>

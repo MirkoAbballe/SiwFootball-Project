@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta charset="UTF-8">
+	    <title>Gestione Squadre</title>
+	  	<link rel="shortcut icon" href="/images/ball.png" type="image/svg">
+	  	<link rel="stylesheet" href="/css/stile.css" />
+	  	
+	    <link rel="stylesheet" 
+			th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css}" 
+			integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" 
+			crossorigin="anonymous" />
+</head>
+
+<style>
+	body 
+	{
+		margin: 0;
+		padding: 0;
+		font-family: Arial, sans-serif;
+		background-color: #282525;
+	}
+
+	.wrapper 
+	{
+		display: flex;
+		flex-direction: column;	}
+
+	.content 
+	{
+		flex-grow: 1;
+		overflow-y: auto;
+		padding-bottom: 10%;
+	}
+
+	.team-list 
+	{
+		list-style: none;
+		padding: 0;
+		width: 400px;
+	}
+
+	.team-item 
+	{
+		display: flex;
+		align-items: center;
+		margin-bottom: 10px;
+	}
+
+	.team-image img 
+	{
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		object-fit: cover;
+		margin-right: 10px;
+	}
+
+	.team-name 
+	{
+		font-weight: bold;
+	}
+
+	.container::-webkit-scrollbar 
+	{
+		width: 0.5em;
+		background-color: #F5F5F5;
+	}
+
+	.container 
+	{
+    overflow: -webkit-scrollbar-none;
+	}	
+
+</style>
+
+<body>
+	<header th:replace="/fragments/base.html::intestazione"></header>
+
+	<div class="wrapper" style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+		<div class="content">
+			<div class="container" style="position: relative;">
+				<ul class="team-list">
+					<li th:each="team : ${teams}" style="margin-top: 40%;">
+						<div class="team-item">
+							<div class="team-name">
+									<img th:src="@{/image/{id}(id=${team.id})}" style="margin-left:20%;"/>
+									<h2><a href="team.html" th:href="@{'/admin' + '/formUpdateTeam/' +${team.id}}" 
+									th:text="${team.name} + ' (' + ${team.hometown}+')'"></a></h2>
+									<a th:href="@{'/admin' + '/deleteTeam/' +${team.id}}"><img style="margin-left:35%;" src="/images/trash.png"/></a>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	 <footer th:replace="/fragments/base.html::footer"></footer>
+  </body>
+</html>
+

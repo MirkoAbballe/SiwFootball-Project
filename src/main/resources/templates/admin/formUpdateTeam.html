@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta charset="UTF-8">
+	    <title>Aggiornamento Team</title>
+	  	<link rel="shortcut icon" href="/images/ball.png" type="image/svg">
+	  	<link rel="stylesheet" href="/css/stile.css" />
+	  	
+	    <link rel="stylesheet" 
+			th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css}" 
+			integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" 
+			crossorigin="anonymous" />
+</head>
+
+<body>
+	
+	<header th:replace="/fragments/base.html::intestazione"></header>	
+	
+	<div class="wrapper" style="background-image: url('https://source.unsplash.com/random/1920x1000/?Football');">
+   		<div class="form-container">
+				<div class="text-center">
+					<br>
+					<br>
+					<h4>Aggiorna la Squadra</h4>
+					<h2 style="color:red;" th:text="${team.name}"></h2><img style="width:20%;" th:src="@{/image/{id}(id=${team.id})}" />
+						<div th:if="${team.professionalasCoach}">
+            				<span class="flex-item">Allenatore (già presente):</span>
+            				<span th:text="${team.professionalasCoach.name} + ' ' +${team.professionalasCoach.surname} + ' '"></span>
+							<span><a th:href="@{'/admin/addCoachToTeam/' + ${team.id}}">Modifica allenatore</a></span>
+        				</div>
+        				
+						<div th:unless="${team.professionalasCoach}">
+           	 				<span class="flex-item"><h4>Nessun Allenatore inserito</h4></span>
+							<span><a th:href="@{'/admin/addCoachToTeam/' + ${team.id}}">Aggiungi allenatore</a></span>
+        				</div>	
+        				
+        				<div>
+							<span class="flex-item"> <a th:href="@{'/admin' + '/updateFootballersOfTeam/' +${team.id}}"><h4>Modifica Giocatori</h4></a></span>
+						</div>
+						
+						<div th:if="${size!=0}">
+							<span class="flex-item"> <a th:href="@{'/admin' + '/updateTrophiesOfTeam/' +${team.id}}"><h4>Aggiungi/Modifica Trofei</h4></a></span>
+						</div>
+						
+						<div th:if="${size==0}">
+								<span class="flex-item"><h4>Nessun Trofeo inserito</h4></span>
+								<span><a th:href="@{'/admin/addTrophiesToTeam/' + ${team.id}}">Aggiungi un nuovo trofeo</a></span>
+						</div>
+	 			</div>
+	 			
+	 			
+			 <form method="POST" class="form-Login text-center" enctype="multipart/form-data" th:action="@{/admin/team/edit/{id}(id=${team.id})}" th:object="${team}">
+				 <div th:if="${#fields.hasGlobalErrors()}">
+						<errors>
+        					<p style="color:red;" th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p> 
+						</errors>
+				</div>
+				
+				 <span> 
+					 <br>
+					 <br>
+					 <br>
+					 <br>
+					 
+    				<div class="form-group">
+				    	<label for="name">Nome:</label>
+    					<input required type="text" class="form-control" id="name" name="name" th:value="${team.name}" readonly/>
+    				</div>
+    				
+    				 <div class="form-group">
+   					 	<label for="foundedDate">Data di fondazione:</label>
+    				 	<input required type="date" class="form-control" id="foundedDate" name="foundedDate" th:value="${team.foundedDate}" readonly/>
+    				 </div>
+    				 
+    				 <div class="form-group">
+							<label for="numberOfPlayer">Numero di giocatori:</label> <span>
+							<input required type="text" class="form-control" th:field="${team.numberOfPlayer}" id="numberOfPlayer"/></span>
+							<errors>
+								<span style="color:red;" th:if="${#fields.hasErrors('numberOfPlayer')}" th:errors="${team.numberOfPlayer}"></span>
+							</errors>
+				  	 </div>
+				  	   
+				  	 <br>
+    				 <div class="form-group">
+							<label for="genre">Nazione di provenienza:</label>
+  							<select id="genre" name="genre" th:field="${team.nationality}">
+				  				<option value="">Seleziona un'opzione..</option>
+	  				  			<option value="italy">Italia</option>
+	    			 			<option value="spain">Spagna</option>
+	    			  			<option value="england">Inghilterra</option>
+	    			 			<option value="france">Francia</option>
+	    			  			<option value="germany">Germania</option>
+  							</select>	
+  							<errors>
+								<span style="color:red;" th:if="${#fields.hasErrors('nationality')}" th:errors="${team.nationality}"></span>
+							</errors>
+					   </div>
+					
+    				<div class="form-group">
+						<label for="hometown">Città di provenienza:</label> 
+						<span><input required type="text" th:field="${team.hometown}" class="form-control" id="hometown" /></span>	
+						<errors>
+							<span style="color:red;" th:if="${#fields.hasErrors('hometown')}" th:errors="${team.hometown}"></span>
+						</errors>
+					</div>
+		
+					<div class="form-group">
+						<label for="stadium">Stadio:</label> 
+						<span><input required type="text" class="form-control" th:field="${team.stadium}" id="stadium"/></span>
+						<errors>
+							<span style="color:red;" th:if="${#fields.hasErrors('stadium')}" th:errors="${team.stadium}"></span>
+						</errors>
+					</div>
+				
+					<BR>
+					<div class="form-group">
+						<label for="stadiumCapacity">Capacità Stadio:</label> 
+						<span><input required type="text" class="form-control" th:field="${team.stadiumCapacity}" id="stadiumCapacity"/></span>
+						<errors>
+							<span style="color:red;" th:if="${#fields.hasErrors('stadiumCapacity')}" th:errors="${team.stadiumCapacity}"></span>
+						</errors>
+					</div>
+					
+					<BR>
+					<div class="form-group">
+						<label for="president">Presidente:</label> 
+						<span><input required type="text" class="form-control" th:field="${team.president}" id="president"/></span>
+						<errors>
+							<span style="color:red;" th:if="${#fields.hasErrors('president')}" th:errors="${team.president}"></span>
+						</errors>
+					</div>
+					
+					<BR>
+					<div class="form-group">
+						<label for="isOnTopDivision">Milita nella massima divisione nazionale?</label> 
+						<span><input type="checkbox" class="form-control" th:field="${team.isOnTopDivision}" id="isOnTopDivision" value="true"/></span>
+						<errors>
+							<span style="color:red;" th:if="${#fields.hasErrors('isOnTopDivision')}" th:errors="${team.isOnTopDivision}"></span>
+						</errors>
+					</div>
+					
+					<BR>
+					<div class="form-group">
+  			  			<label for="image">Stemma squadra</label>
+  		  	    		<input required type="file" id="image" name="image" class="form-control" th:field="${team.image}"/>
+					</div>
+  				
+    			<button type="submit">Salva</button>
+    			</span> 
+			</form> 
+		</div>
+	</div> 	
+	<footer th:replace="/fragments/base.html::footer"></footer>
+</body>
+</html>

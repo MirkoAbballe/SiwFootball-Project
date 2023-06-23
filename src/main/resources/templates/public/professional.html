@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta charset="UTF-8">
+	 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		 <meta charset="UTF-8">
+	 	<title th:text="'Stai visualizzando: ' + ${professional.name} + ' '+ ${professional.surname}"></title>
+	 	<link rel="shortcut icon" href="/images/ball.png" type="image/svg">
+	 	<link rel="stylesheet" href="/css/stile.css" />
+	  	
+		<link rel="stylesheet" 
+			th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css}" 
+			integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" 
+			crossorigin="anonymous" />
+ 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    	<style>
+			body {
+				margin: 0;
+				padding: 0;
+				font-family: Arial, sans-serif;
+				background-color:#282525;
+			}
+			.wrapper 
+			{
+  				display: flex;
+  				flex-direction: column;
+  				overflow-y: auto;
+			}
+
+			.content 
+			{
+  				flex-grow: 1;
+  				overflow-y: auto;
+  				padding-bottom: 10%;
+			}
+	
+
+			.card 
+			{
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				background-color: #fff;
+				border-radius: 10px;
+				box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+				padding: 30px;
+				max-width: 500px;
+				width: 100%;
+				transform: translate(-50%, -50%);
+			}
+			
+			
+			.card img {
+				
+				width: 200px;
+				height: 200px;
+				border-radius: 50%;
+				object-fit: cover;
+				object-position: center;
+				margin-bottom: 30px;
+				box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+			}
+			.card h1 {
+				font-size: 24px;
+				margin-bottom: 5px;
+				text-align: center;
+				color: #333;
+			}
+			.card p {
+				font-size: 18px;
+				margin: 0;
+				text-align: center;
+				color: #666;
+			}
+			.card .fa {
+				margin-right: 5px;
+				color: #666;
+			}
+			.card .info {
+				display: flex;
+				align-items: center;
+				margin-top: 20px;
+			}
+			.card .info span {
+				margin-left: 10px;
+				font-size: 16px;
+				color: #666;
+			}
+			
+			.card .info img
+			{
+				width:auto;
+				height:auto;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header th:replace="/fragments/base.html::intestazione"></header>
+		<div class="wrapper">
+    			<div class="content" style="overflow: auto;" >
+					<div class="card"  style="overflow: auto; margin-top:50%; margin-left:50%;">	
+						<img th:src="@{/image/professional/{id}(id=${professional.id})}" style="margin-right:54%;" alt="Foto Professionista"/>
+						<h1 style="color:black; margin-top:-30%; margin-left:45%;" class="card-title" th:text="${professional.name}+ ' '+${professional.surname}"></h1>
+						
+						<div th:if="${professional.position=='Allenatore'}">
+							<h2 style="color:black; margin-top:25%; margin-left:20%;" class="card-title" th:text="'Valutazione: '+${professional.valutationasCoach}+'/5'"></h2>
+						</div>
+						
+						<div th:if="${professional.position!='Allenatore'}">
+							<h2 style="color:black; margin-top:25%; margin-left:20%;" th:text="'Valutazione: '+${professional.valutationasFootballer}+'/5'"></h2>
+						</div>
+						
+						<br>
+						<div th:if="${professional.nationality=='Italiana'}">
+							<div class="info">
+								<i class="fas fa-phone"></i>
+								<span><h4 style="color:black;" th:text="'Nazionalità'"></h4><img src="/images/italy.png" style="margin-left: 23%;"/></span>
+							</div>
+						</div>
+						
+						<div th:if="${professional.nationality=='Spagnola'}">
+							<div class="info">
+								<i class="fas fa-phone"></i>
+								<span><h4 style="color:black;" th:text="'Nazionalità'"></h4><img src="/images/spain.png" style="margin-left: 23%;"/></span>
+							</div>
+						</div>
+						
+						<div th:if="${professional.nationality=='Danese'}">
+							<div class="info">
+								<i class="fas fa-phone"></i>
+								<span><h4 style="color:black;" th:text="'Nazionalità'"></h4><img src="/images/danimarca.png" style="margin-left: 23%;"/></span>
+							</div>
+						</div>
+						
+						<div th:if="${professional.nationality=='Ivoriana'}">
+							<div class="info">
+								<i class="fas fa-phone"></i>
+								<span><h4 style="color:black;" th:text="'Nazionalità'"></h4><img src="/images/costadavorio.png" style="margin-left: 23%;"/></span>
+							</div>
+						</div>
+						
+						<div th:if="${professional.nationality=='Ceca'}">
+							<div class="info">
+								<i class="fas fa-phone"></i>
+								<span><h4 style="color:black;" th:text="'Nazionalità'"></h4><img src="/images/repceca.png" style="margin-left: 23%;"/></span>
+							</div>
+						</div>
+						
+						<div th:if="${professional.nationality=='Inglese'}">
+							<div class="info">
+								<i class="fas fa-phone"></i>
+								<span><h4 style="color:black;" th:text="'Nazionalità'"></h4><img src="/images/england.png" style="margin-left: 23%;"/></span>
+							</div>
+						</div>
+						
+						<div th:if="${professional.nationality=='Nigeriana'}">
+							<div class="info">
+								<i class="fas fa-phone"></i>
+								<span><h4 style="color:black;" th:text="'Nazionalità'"></h4><img src="/images/nigeria.png" style="margin-left: 23%;"/></span>
+							</div>
+						</div>
+						
+						<div th:if="${professional.nationality=='Francese'}">
+							<div class="info">
+								<i class="fas fa-phone"></i>
+								<span><h4 style="color:black;" th:text="'Nazionalità'"></h4><img src="/images/france.png" style="margin-left: 23%;"/></span>
+							</div>
+						</div>
+						
+						<div th:if="${professional.nationality=='Portoghese'}">
+							<div class="info">
+								<i class="fas fa-phone"></i>
+								<span><h4 style="color:black;" th:text="'Nazionalità'"></h4><img src="/images/portugal.png" style="margin-left: 23%;"/></span>
+							</div>
+						</div>
+						
+						<div th:if="${professional.nationality=='Tedesca'}">
+							<div class="info">
+								<i class="fas fa-phone"></i>
+								<span><h4 style="color:black;" th:text="'Nazionalità'"></h4><img src="/images/germany.png" style="margin-left: 23%;"/></span>
+							</div>
+						</div>
+						
+						<div th:if="${professional.nationality=='Polacca'}">
+							<div class="info">
+								<i class="fas fa-phone"></i>
+								<span><h4 style="color:black;" th:text="'Nazionalità'"></h4><img src="/images/poland.png" style="margin-left: 23%;"/></span>
+							</div>
+						</div>
+						
+						<div th:if="${professional.nationality=='Bosniaca'}">
+							<div class="info">
+								<i class="fas fa-phone"></i>
+								<span><h4 style="color:black; " th:text="'Nazionalità'"></h4><img src="/images/bosnia.png" style="margin-left: 23%;"/></span>
+							</div>
+						</div>
+						
+						<div th:if="${professional.nationality=='Belga'}">
+							<div class="info">
+								<i class="fas fa-phone"></i>
+								<span><h4 style="color:black; " th:text="'Nazionalità'"></h4><img src="/images/belgio.png" style="margin-left: 23%;"/></span>
+							</div>
+						</div>
+						
+						<div th:if="${professional.nationality=='Turca'}">
+							<div class="info">
+								<i class="fas fa-phone"></i>
+								<span><h4 style="color:black; " th:text="'Nazionalità'"></h4><img src="/images/turchia.png" style="margin-left: 23%;"/></span>
+							</div>
+						</div>
+						
+						<div th:if="${professional.nationality=='Svedese'}">
+							<div class="info">
+								<i class="fas fa-phone"></i>
+								<span><h4 style="color:black; " th:text="'Nazionalità'"></h4><img src="/images/svezia.png" style="margin-left: 23%;"/></span>
+							</div>
+						</div>
+						
+						<div th:if="${professional.nationality=='Olandese'}">
+							<div class="info">
+								<i class="fas fa-phone"></i>
+								<span><h4 style="color:black; " th:text="'Nazionalità'"></h4><img src="/images/olanda.png" style="margin-left: 23%;"/></span>
+							</div>
+						</div>
+						
+						<div th:if="${professional.nationality=='Uruguaiana'}">
+							<div class="info">
+								<i class="fas fa-phone"></i>
+								<span><h4 style="color:black; " th:text="'Nazionalità'"></h4><img src="/images/uruguay.png" style="margin-left: 23%;"/></span>
+							</div>
+						</div>
+						
+						<div th:if="${professional.nationality=='Camerunense'}">
+							<div class="info">
+								<i class="fas fa-phone"></i>
+								<span><h4 style="color:black; " th:text="'Nazionalità'"></h4><img src="/images/camerun.png" style="margin-left: 23%;"/></span>
+							</div>
+						</div>
+						
+						<div th:if="${professional.nationality=='Slovena'}">
+							<div class="info">
+								<i class="fas fa-phone"></i>
+								<span><h4 style="color:black; " th:text="'Nazionalità'"></h4><img src="/images/slovenia.png" style="margin-left: 23%;"/></span>
+							</div>
+						</div>
+						
+						<div th:if="${professional.nationality=='Svizzera'}">
+							<div class="info">
+								<i class="fas fa-phone"></i>
+								<span><h4 style="color:black;" th:text="'Nazionalità'"></h4><img src="/images/switzerland.png" style="margin-left: 23%;"/></span>
+							</div>
+						</div>
+						
+						<div th:if="${professional.nationality=='Albanese'}">
+							<div class="info">
+								<i class="fas fa-phone"></i>
+								<span><h4 style="color:black; " th:text="'Nazionalità'"></h4><img src="/images/albania.png" style="margin-left: 23%;"/></span>
+							</div>
+						</div>
+						
+						<div th:if="${professional.nationality=='Argentina'}">
+							<div class="info">
+								<i class="fas fa-phone"></i>
+								<span><h4 style="color:black;" th:text="'Nazionalità'"></h4><img src="/images/argentina.png" style="margin-left: 23%;"/></span>
+							</div>
+						</div>
+						
+						<div th:if="${professional.nationality=='Colombiana'}">
+							<div class="info">
+								<i class="fas fa-phone"></i>
+								<span><h4 style="color:black;" th:text="'Nazionalità'"></h4><img src="/images/colombia.png" style="margin-left: 23%;"/></span>
+							</div>
+						</div>
+						
+						<div th:if="${professional.nationality=='Brasilina'}">
+							<div class="info">
+								<i class="fas fa-phone"></i>
+								<span><h4 style="color:black;" th:text="'Nazionalità'"></h4><img src="/images/brazil.png" style="margin-left: 23%;"/></span>
+							</div>
+						</div>
+						
+						<div th:if="${professional.nationality=='Americana'}">
+							<div class="info">
+								<i class="fas fa-phone"></i>
+								<span><h4 style="color:black;" th:text="'Nazionalità'"></h4><img src="/images/united_states.png" style="margin-left: 23%;"/></span>
+							</div>
+						</div>
+						
+						<div th:if="${professional.nationality=='Serba'}">
+							<div class="info">
+								<i class="fas fa-phone"></i>
+								<span><h4 style="color:black;" th:text="'Nazionalità'"></h4><img src="/images/serbia.png" style="margin-left: 23%;"/></span>
+							</div>
+						</div>
+					
+						<div class="info">
+							<i class="fas fa-phone"></i>
+							<span><h4 style="color:black;" th:text="' ' + 'Data di Nascita: ' + ${professional.dateOfBirth}"></h4></span>
+						</div>
+					
+						<div class="info">
+							<i class="fas fa-phone"></i>
+							<span><h4 style="color:black;" th:text="' ' + 'Altezza: ' + ${professional.height}+' cm'"></h4></span>
+						</div>
+					
+						<div class="info">
+							<i class="fas fa-phone"></i>
+							<span><h4 style="color:black;" th:text="' ' + 'Piede: ' + ${professional.footedness}"></h4></span>
+						</div>
+					
+						<div class="info">
+							<i class="fas fa-phone"></i>
+							<span><h4 style="color:black;" th:text="' ' + 'Posizione: ' + ${professional.position}"></h4></span>
+						</div>
+					
+						<div class="info">
+							<i class="fas fa-phone"></i>
+							<span><h4 style="color:black;" th:text="' ' + 'Goals in carriera: ' + ${professional.goals}"></h4></span>
+						</div>
+					
+						<div th:if="${professional.teamAsCoach!=null}">
+							<div class="info">
+								<i class="fas fa-phone"></i>
+								<span><h4 style="color:black;" th:text="' ' + 'Allenatore di: ' + ${professional.teamAsCoach.name}"><img th:src="@{/image/{id}(id=${professional.teamAsCoach.id})}" style="margin-right:54%;" alt="Foto Professionista"/></h4></span>
+							</div>
+						</div>
+					
+						<div th:if="${professional.teamAsFootballer!=null}">
+							<div class="info">
+								<i class="fas fa-phone"></i>
+								<span>
+  									<h4 style="color: black; position:absolute; left:25%;" th:text="'Giocatore di: ' + ${professional.teamAsFootballer.name}"></h4>
+								</span>
+							</div>
+						</div>
+						
+						<div th:if="${professional.teamAsFootballer!=null}">
+							<div class="info">
+								<i class="fas fa-phone"></i>
+								<span>
+									<img th:src="@{/image/{id}(id=${professional.teamAsFootballer.id})}" style="width: 30%; margin-top:30%; margin-left:35%;" alt="Stemma Squadra"/>
+								</span>
+							</div>
+						</div>
+						
+						<div th:if="${professional.isCaptain==true}">
+							<div th:if="${professional.teamAsFootballer!=null}">
+							<div class="info">
+								<i class="fas fa-phone"></i>
+								<span>
+									<h4 style="color:black;" th:text="'Capitano per ' + ' '+ ${professional.teamAsFootballer.name}"></h4>
+									<img style="position:fixed; left:48%;" src="/images/captain_team.png"/>
+								</span>
+							</div>
+						</div>
+					</div>
+					
+					<div th:if="${professional.isCaptain==true}">
+							<div th:if="${professional.teamAsFootballer==null}">
+								<div class="info">
+									<i class="fas fa-phone"></i>
+									<span>
+										<h4 style="color:black;" th:text="'Capitano per: ' + ' '+ 'Squadra non specificata.'"></h4>
+										<img style="position:fixed; left:48%;" src="/images/captain_team.png"/>
+									</span>
+								</div>
+							</div>
+					</div>
+					
+						
+						<div sec:authorize="hasAuthority('DEFAULT')">
+							<div th:if="${flag==1}">
+								<div class="info">
+									<i class="fas fa-envelope"></i>
+									<h5 style="color:red;" th:text="'Aggiungi alla lista dei miei preferiti'"></h5>
+									<a th:href="@{/default/addMyProfessional/{id}(id=${professional.id})}">
+										<img src="/images/heart.png"/>
+									</a>
+								</div>
+							</div>
+						</div>
+						
+						<div sec:authorize="hasAuthority('DEFAULT')">
+							<div th:if="${flag==0}">
+								<div class="info">
+									<i class="fas fa-envelope"></i>
+									<h5 style="color:red;" th:text="'Rimuovi dalla lista dei miei preferiti'"></h5>
+									<a th:href="@{/default/removeMyProfessional/{id}(id=${professional.id})}">
+										<img src="/images/brokenheart.png"/>
+									</a>
+								</div>
+							</div>
+						</div>
+						
+						<div class="info" sec:authorize="hasAnyAuthority('DEFAULT')">
+								<i class="fas fa-map-marker-alt"></i>
+								<span>
+									<div th:if="${rating == false}">
+    									<a th:href="@{/default/Newrating/{id}(id=${professional.id})}">
+        									<button type="submit" class="btn-toolset btn-toolset:hover">Valuta il professionista</button>
+    									</a>
+									</div>
+							   </span>
+						</div>
+					</div>
+					
+					
+					
+					<div class="container" style="position: relative; top: -20%; width: 80%; height: 90%;; overflow: auto;">
+					 <div class="positioned">
+    					<h1>Palmarès Professionista</h1>
+  
+    				<table style="overflow-y:auto" class="table table-striped custom-table">
+      					<thead>
+       						<tr>
+          						<th style="color:red;">Trofeo</th>
+          						<th style="color:red;">Squadra</th>
+          						<th style="color:red;">Data</th>
+        					</tr>
+      					</thead>
+     				 	<tbody>
+  							<tr th:each="trophy : ${trophies}">
+    							<td>
+      								<img th:src="@{/image/trophy/{id} (id=${trophy.id})}"/> <a th:href="@{/public/trophies/{id}(id=${trophy.id})}" style="color:antiquewhite;" th:text="${trophy.name}"></a>
+    							</td>
+    							<td>
+    								<img style="width:5%;" th:src="@{/image/{id} (id=${trophy.winningTeam.id})}"/> <a th:href="@{/public/teams/{id}(id=${trophy.winningTeam.id})}" style="color:antiquewhite;" th:text="${trophy.winningTeam.name}"></a>
+    							</td>
+    							<td style="color:antiquewhite;" th:text="${trophy.date}"></td>
+ 							</tr>
+						 </tbody>
+   					</table>
+ 			 	</div>
+			</div>
+		 </div>
+		</div>
+	  	<footer th:replace="/fragments/base.html::footer"></footer>
+	</body>
+</html>
+		

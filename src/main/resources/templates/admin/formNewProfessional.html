@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta charset="UTF-8">
+	    <title>Registrazione Professionista</title>
+	  	<link rel="shortcut icon" href="/images/ball.png" type="image/svg">
+	  	<link rel="stylesheet" href="/css/stile.css" />
+	  	
+	    <link rel="stylesheet" 
+			th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css}" 
+			integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" 
+			crossorigin="anonymous" />
+</head>
+<body>
+<header th:replace="/fragments/base.html::intestazione"></header>
+<div class="wrapper" style="background-image: url('https://source.unsplash.com/random/1920x1000/?Football');">
+	
+    	<div class="form-container">
+      		<form class="form-Login text-center" th:action="@{/admin/professionals}" enctype="multipart/form-data" method="POST" th:object="${professional}" style="width: 50%; height:70%; border:black">
+				<h2 style="color:black;">Inserisci un nuovo Professionista</h2>
+				<div th:if="${#fields.hasGlobalErrors()}">
+			
+					<errors>
+        				<p style="color:red;" th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p> 
+					</errors>
+				</div>
+				
+				<div class="form-group">
+					<label for="name">Nome:</label> <span>
+					<input required type="text" th:field="${professional.name}" class="form-control" id="name"/></span>
+					<errors>
+						<span style="color:red;" th:if="${#fields.hasErrors('name')}" th:errors="${professional.name}"></span> <!-- riga che ritorna uno specifico errore che si verifica dal binding sul campo "name". -->
+					</errors>
+				</div>
+
+				<div class="form-group">
+					<label for="surname">Cognome:</label> <span>
+					<input required type="text" th:field="${professional.surname}" class="form-control" id="surname"/></span>
+					<errors>
+						<span style="color:red;" th:if="${#fields.hasErrors('surname')}" th:errors="${professional.surname}"></span> <!-- riga che ritorna uno specifico errore che si verifica dal binding sul campo "surname". -->
+					</errors>
+				</div>
+		
+				<div class="form-group">
+					<label for="dateOfBirth">Data di nascita:</label> 
+					<span><input required type="date" th:field="${professional.dateOfBirth}" class="form-control" id="dateOfBirth" /></span>
+					<errors>
+						<span style="color:red;" th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="${professional.dateOfBirth}"></span> <!-- riga che ritorna uno specifico errore che si verifica dal binding sul campo "dateOfBirth". -->
+					</errors>
+				</div>
+			
+				<div class="form-group">
+							<label for="nationality">Nazionalità:</label>
+  							<select id="nationality" name="nationality" th:field="${professional.nationality}">
+				  				<option value="">Seleziona un'opzione..</option>
+	  				  			<option value="Italiana">Italiana</option>
+	    			 			<option value="Spagnola">Spagnola</option>
+	    			  			<option value="Inglese">Inglese</option>
+	    			 			<option value="Francese">Francese</option>
+	    			  			<option value="Portoghese">Portoghese</option>
+	    			  			<option value="Tedesca">Tedesca</option>
+	    			 			<option value="Polacca">Polacca</option>
+	    			 			<option value="Belga">Belga</option>
+	    			 			<option value="Camerunense">Camerunense</option>
+	    			 			<option value="Danese">Danese</option>
+	    			 			<option value="Svedese">Svedese</option>
+	    			 			<option value="Ceca">Ceca</option>
+	    			 			<option value="Turca">Turca</option>
+	    			 			<option value="Uruguaiana">Uruguaiana</option>
+	    			 			<option value="Colombiana">Colombiana</option>
+	    			 			<option value="Ivoriana">Ivoriana</option>
+	    			 			<option value="Olandese">Olandese</option>
+	    			 			<option value="Slovena">Slovena</option>
+	    			 			<option value="Albanese">Albanese</option>
+	    			 			<option value="Bosniaca">Bosniaca</option>
+	    			 			<option value="Nigeriana">Nigeriana</option>
+				    			<option value="Svizzera">Svizzera</option>
+				    			<option value="Serba">Serba</option>
+				    			<option value="Argentina">Argentina</option>
+				    			<option value="Brasilina">Brasiliana</option>
+				    			<option value="Americana">Americana</option>
+  							</select>	
+  							<errors>
+								<span style="color:red;" th:if="${#fields.hasErrors('nationality')}" th:errors="${professional.nationality}"></span> <!-- riga che ritorna uno specifico errore che si verifica dal binding sul campo "genre". -->
+							</errors>
+					</div>
+				
+				<div class="form-group">
+					<label for="height">Altezza:</label> 
+					<span><input required type="text" th:field="${professional.height}" placeholder="Inserisci l'altezza (in cm)" id="height" /></span>
+					<errors>
+						<span style="color:red;" th:if="${#fields.hasErrors('height')}" th:errors="${professional.height}"></span> 
+					</errors>
+				</div>
+				
+				<div class="form-group">
+					<label for="goals">Goals in carriera:</label> 
+					<span><input required type="text" th:field="${professional.goals}" placeholder="Inserisci il numero di goal in carriera" id="goals" /></span>
+					<errors>
+						<span style="color:red;" th:if="${#fields.hasErrors('goals')}" th:errors="${professional.goals}"></span> 
+					</errors>
+				</div>
+				
+				<div class="form-group">
+					<label for="footedness">Piede:</label>
+  					<select id="footedness" name="footedness" th:field="${professional.footedness}">
+				  		<option value="">Seleziona un'opzione..</option>
+	  				  	<option value="destro">Destro</option>
+	    			 	<option value="sinistro">Sinistro</option>
+	    			  	<option value="ambidestro">Ambidestro</option>
+	    			 	<option value="ambisinistro">AmbiSinistro</option>
+  					</select>
+  								
+  					<errors>
+						<span style="color:red;" th:if="${#fields.hasErrors('footedness')}" th:errors="${professional.footedness}"></span> 
+					</errors>
+				</div>
+				
+				
+				<div class="form-group">
+					<label for="plot">(Se giocatore) E' capitano della squadra per la quale gioca?</label> 
+					<span><input type="checkbox" class="form-control" th:field="${professional.isCaptain}" id="isCaptain" value="true"/></span>
+					<errors>
+						<span style="color:red;" th:if="${#fields.hasErrors('isCaptain')}" th:errors="${professional.isCaptain}"></span>
+					</errors>
+				</div>
+						
+						
+				<div class="form-group">
+							<label for="position">Ruolo:</label>
+  							<select id="position" name="position" th:field="${professional.position}">
+				  				<option value="">Seleziona un'opzione..</option>
+	  				  			<option value="Allenatore">Allenatore</option>
+	    			 			<option value="Attaccante">Attaccante</option>
+	    			  			<option value="Centrocampista">Centrocampista</option>
+	    			 			<option value="Difensore">Difensore</option>
+	    			 			<option value="Portiere">Portiere</option>
+  							</select>
+  								
+  							<errors>
+								<span style="color:red;" th:if="${#fields.hasErrors('position')}" th:errors="${professional.position}"></span> 
+							</errors>
+				</div>
+				
+					   	   
+				<div class="form-group">
+  			  		<label for="image">Immagine</label>
+  		  	    	<input required type="file" id="image" name="image" class="form-control" th:field="${professional.image}"/>
+  		  	    	<errors>
+							<span th:if="${#fields.hasErrors('image')}" th:errors="${professional.image}"></span> 
+					</errors>
+				</div>
+	    
+				<div>
+					<span><button type="submit">INVIO</button></span>
+				</div>
+		
+		</form>
+  	</div>
+</div>
+      
+  <footer th:replace="/fragments/base.html::footer"></footer>
+  
+	</body>
+</html>

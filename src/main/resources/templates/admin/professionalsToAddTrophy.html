@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="UTF-8">
+    <title th:text="${trophy.name}"></title>
+    <link rel="shortcut icon" href="/images/ball.png" type="image/svg">
+    <link rel="stylesheet" href="/css/stile.css" />
+
+    <link rel="stylesheet" 
+        th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css}" 
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" 
+        crossorigin="anonymous" />
+</head>
+
+<body>
+	
+	<header th:replace="/fragments/base.html::intestazione"></header>
+	
+	<BR>
+	<BR>
+	<BR>
+	<BR>
+	<BR>
+
+    <div class="wrapper">
+		<div class="content">
+	    	<div class="container-entity">
+					<ul class="professionals">
+						<h2 style="color:green; font-family:Lucida Handwriting" th:text="'Professionisti che hanno conseguito ' + ${trophy.name}"></h2>	
+						<div th:if="${trophy.winningProfessionals.isEmpty()}">
+								<h4 style="color:red;" th:text="'Spiacente, nessun professionista è stato inserito come vincitore del trofeo.'"></h4>	
+						</div>
+						<li th:each="professional : ${trophy.winningProfessionals}">
+							
+							<span  class="entity">
+								<img th:src="@{/image/professional/{id}(id=${professional.id})}"  width="10%" />
+								<H2><a th:text="${professional.name}+' '+${professional.surname}"></a></H2>
+								<a th:href="@{'/admin/removeProfessionalFromTrophy/'+ ${professional.id}+'/'+${trophy.id}}">Cancella</a>
+							</span>
+						</li>
+					</ul>
+				
+				
+				<span>
+					<h2 style="color:green; font-family:Lucida Handwriting" th:text="'Professionisti disponibili per ' + ${trophy.name}"></h2>	
+					
+					<div th:if="${professionalAvail.isEmpty()}">
+						<br><br><br>
+						<h4 style="color:red;" th:text="'Spiacente, nessun professionista è attualmente disponibile.'"/>	
+					</div>
+					
+					<ul>
+						<li th:each="professional : ${professionalAvail}">
+							<span  class="entity">
+								<img th:src="@{/image/professional/{id}(id=${professional.id})}"  width="10%" />
+								<h2><a th:href="@{'/admin' +'/' + 'setProfessionalToTrophy' + '/' + ${professional.id} + '/' + ${trophy.id}}"
+								th:text="${professional.name} + ' '+${professional.surname}"></a></h2>
+							</span>	
+						</li>	
+					</ul>
+				</span>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="/fragments/base.html::footer"></footer>
+</body>
+
+</html>

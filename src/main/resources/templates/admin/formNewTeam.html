@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta charset="UTF-8">
+	    <title>Registrazione Team</title>
+	  	<link rel="shortcut icon" href="/images/ball.png" type="image/svg">
+	  	<link rel="stylesheet" href="/css/stile.css" />
+	  	
+	    <link rel="stylesheet" 
+			th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css}" 
+			integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" 
+			crossorigin="anonymous" />
+</head>
+	
+	<body>
+		<header th:replace="/fragments/base.html::intestazione"></header>
+	
+		<div class="wrapper" style="background-image: url('https://source.unsplash.com/random/1920x1000/?Football');">
+   			<div class="form-container">
+      				<form class="form-Login text-center" th:action="@{/admin/teams}" enctype="multipart/form-data" method="POST" th:object="${team}" style="width: 50%; height:70%; border:black;">
+						<h5>Registrazione Team</h5>
+						<div th:if="${#fields.hasGlobalErrors()}">
+							<errors>
+        						<p style="color:red;" th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p> 
+							</errors>
+						</div>
+						
+						<div class="form-group">
+							<label for="name">Nome:</label> 
+							<span><input required type="text" class="form-control" th:field="${team.name}" id="name"/></span>
+							<errors>
+								<span style="color:red;" th:if="${#fields.hasErrors('name')}" th:errors="${team.name}"></span> <!-- riga che ritorna uno specifico errore che si verifica dal binding sul campo "name". -->
+							</errors>
+				    	</div>
+						<BR>
+						<div class="form-group">
+							<label for="foundedDate">Anno di fondazione:</label> <span>
+							<input required type="date" class="form-control" th:field="${team.foundedDate}" id="foundedDate"/></span>
+							<errors>
+								<span style="color:red;" th:if="${#fields.hasErrors('foundedDate')}" th:errors="${team.foundedDate}"></span> 
+							</errors>
+				  	   </div>
+				  	   
+						<BR>
+						
+						<div class="form-group">
+							<label for="numberOfPlayer">Numero di giocatori:</label>
+							<span>
+								<input required type="text" class="form-control" th:field="${team.numberOfPlayer}" id="numberOfPlayer"/>
+							</span>	
+							<errors>
+								<span style="color:red;" th:if="${#fields.hasErrors('numberOfPlayer')}" th:errors="${team.numberOfPlayer}"></span> 
+							</errors>
+						</div>
+						
+						<div class="form-group">
+							<label for="genre">Nazione di provenienza:</label>
+  							<select id="genre" name="genre" th:field="${team.nationality}">
+				  				<option value="">Seleziona un'opzione..</option>
+	  				  			<option value="italy">Italia</option>
+	    			 			<option value="spain">Spagna</option>
+	    			  			<option value="england">Inghilterra</option>
+	    			 			<option value="france">Francia</option>
+	    			  			<option value="germany">Germania</option>
+  							</select>	
+  							<errors>
+								<span style="color:red;" th:if="${#fields.hasErrors('nationality')}" th:errors="${team.nationality}"></span> <!-- riga che ritorna uno specifico errore che si verifica dal binding sul campo "genre". -->
+							</errors>
+					   </div>
+					   
+					   <BR>
+					
+						<div class="form-group">
+							<label for="hometown">Città di provenienza:</label> 
+							<span><input required type="text" class="form-control" th:field="${team.hometown}" id="hometown"/></span>
+								<errors>
+									<span style="color:red;" th:if="${#fields.hasErrors('hometown')}" th:errors="${team.hometown}"></span>
+								</errors>
+						</div>
+						
+						<BR>	
+						<div class="form-group">
+							<label for="stadium">Stadio:</label> 
+							<span><input required type="text" class="form-control" th:field="${team.stadium}" id="stadium"/></span>
+							<errors>
+								<span style="color:red;" th:if="${#fields.hasErrors('stadium')}" th:errors="${team.stadium}"></span> 
+							</errors>
+						</div>
+						
+						
+						<BR>
+						<div class="form-group">
+							<label for="stadiumCapacity">Capacità Stadio:</label> 
+							<span><input required type="text" class="form-control" th:field="${team.stadiumCapacity}" id="stadiumCapacity"/></span>
+							<errors>
+								<span style="color:red;" th:if="${#fields.hasErrors('stadiumCapacity')}" th:errors="${team.stadiumCapacity}"></span>
+							</errors>
+						</div>
+					
+						<BR>
+						<div class="form-group">
+							<label for="president">Presidente:</label> 
+							<span><input required type="text" class="form-control" th:field="${team.president}" id="president"/></span>
+							<errors>
+								<span style="color:red;" th:if="${#fields.hasErrors('president')}" th:errors="${team.president}"></span>
+							</errors>
+						</div>
+						
+						<BR>
+						<div class="form-group">
+							<label for="isOnTopDivision">Milita nella massima divisione nazionale?</label> 
+							<span><input type="checkbox" class="form-control" th:field="${team.isOnTopDivision}" id="isOnTopDivision" value="true"/></span>
+							<errors>
+								<span style="color:red;" th:if="${#fields.hasErrors('isOnTopDivision')}" th:errors="${team.isOnTopDivision}"></span>
+							</errors>
+						</div>
+					
+						<BR>
+						<div class="form-group">
+  			  				<label for="image">Stemma squadra</label>
+  		  	    			<input required type="file" id="image" name="image" class="form-control" th:field="${team.image}"/>
+						</div>
+	    		
+						<div>
+							<span><button type="submit">Salva</button></span>
+						</div>
+		
+				</form>
+   	 		</div>
+  	</div>
+  
+  <footer th:replace="/fragments/base.html::footer"></footer>
+</body>
+
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta charset="UTF-8">
+	 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta charset="UTF-8">
+	 	<title th:text="'Dai una valutazione a: ' + ${professional.name}+ ' '+ ${professional.surname}"></title>
+	 	
+	 	<link rel="shortcut icon" href="/images/ball.png" type="image/svg">
+	 	<link rel="stylesheet" href="/css/stile.css" />
+	  	
+		<link rel="stylesheet" 
+			th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css}" 
+			integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" 
+			crossorigin="anonymous" />
+ 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	</head>
+
+
+	<body>
+		<header th:replace="/fragments/base.html::intestazione"></header>
+	
+		<div class="wrapper" style="background-image: url('https://source.unsplash.com/random/1920x1000/?Football');">
+			<div class="content">
+				<form class="form-Login text-center" th:action="@{/default/setRating/{id}(id=${professional.id})}" method="POST" th:object="${rating}" style="width: 50%; height:70%; border:black;">
+						<h5 th:text="'Inserisci una valutazione per il professionista: '+${professional.name} + ' '+${professional.surname}"></h5>
+						<div th:if="${professional.position!='Allenatore'}">
+							<div class="form-group">
+								<label for="text">Abilità tecniche:</label> 
+								<select id="techinalskill" name="techinalskill" th:field="${rating.techinalskill}">
+	  				  				<option value="1">&#9733;</option>
+		    			 			<option value="2">&#9733; &#9733;</option>
+		    			  			<option value="3">&#9733; &#9733; &#9733;</option>
+		    			 			<option value="4">&#9733; &#9733; &#9733; &#9733;</option>
+		    			  			<option value="5">&#9733; &#9733; &#9733; &#9733; &#9733;</option>
+  						 	 	</select>	
+  						 	</div>
+  						 	
+  						 	<div class="form-group">
+								<label for="text">Abilità fisiche:</label> 
+								<select id="physical_ability" name="physicalability" th:field="${rating.physicalability}">
+	  				  				<option value="1">&#9733;</option>
+		    			 			<option value="2">&#9733; &#9733;</option>
+		    			  			<option value="3">&#9733; &#9733; &#9733;</option>
+		    			 			<option value="4">&#9733; &#9733; &#9733; &#9733;</option>
+		    			  			<option value="5">&#9733; &#9733; &#9733; &#9733; &#9733;</option>
+  						 	 	</select>	   
+  						 	</div>
+  						 	
+  						 	<div class="form-group">
+								<label for="text">Abilità di tiro:</label> 
+								<select id="shootingability" name="shootingability" th:field="${rating.shootingability}">
+	  				  				<option value="1">&#9733;</option>
+		    			 			<option value="2">&#9733; &#9733;</option>
+		    			  			<option value="3">&#9733; &#9733; &#9733;</option>
+		    			 			<option value="4">&#9733; &#9733; &#9733; &#9733;</option>
+		    			  			<option value="5">&#9733; &#9733; &#9733; &#9733; &#9733;</option>
+  						 	 	</select>	   
+  						 	</div>
+  						 	
+  						 	<div class="form-group">
+								<label for="text">Abilità sul dribbling:</label> 
+								<select id="dribblingskill" name="dribblingskill" th:field="${rating.dribblingskill}">
+	  				  				<option value="1">&#9733;</option>
+		    			 			<option value="2">&#9733; &#9733;</option>
+		    			  			<option value="3">&#9733; &#9733; &#9733;</option>
+		    			 			<option value="4">&#9733; &#9733; &#9733; &#9733;</option>
+		    			  			<option value="5">&#9733; &#9733; &#9733; &#9733; &#9733;</option>
+  						 	 	</select>	   
+  						 	</div>
+  						 </div>
+  						 
+  						 
+  						<div th:if="${professional.position=='Allenatore'}">
+							<div class="form-group">
+								<label for="text">Conoscenze tecniche:</label> 
+								<select id="tacticalknowledge" name="tacticalknowledge" th:field="${rating.tacticalknowledge}">
+	  				  				<option value="1">&#9733;</option>
+		    			 			<option value="2">&#9733; &#9733;</option>
+		    			  			<option value="3">&#9733; &#9733; &#9733;</option>
+		    			 			<option value="4">&#9733; &#9733; &#9733; &#9733;</option>
+		    			  			<option value="5">&#9733; &#9733; &#9733; &#9733; &#9733;</option>
+  						 	 	</select>	
+  						 	</div>
+  						 	
+  						 	<div class="form-group">
+								<label for="text">Abilità di comunicazione:</label> 
+								<select id="communicationskill" name="communicationskill" th:field="${rating.communicationskill}">
+	  				  				<option value="1">&#9733;</option>
+		    			 			<option value="2">&#9733; &#9733;</option>
+		    			  			<option value="3">&#9733; &#9733; &#9733;</option>
+		    			 			<option value="4">&#9733; &#9733; &#9733; &#9733;</option>
+		    			  			<option value="5">&#9733; &#9733; &#9733; &#9733; &#9733;</option>
+  						 	 	</select>	   
+  						 	</div>
+  						 	
+  						 	<div class="form-group">
+								<label for="text">Abilità di motivazione:</label> 
+								<select id="motivationalskill" name="motivationalskill" th:field="${rating.motivationalskill}">
+	  				  				<option value="1">&#9733;</option>
+		    			 			<option value="2">&#9733; &#9733;</option>
+		    			  			<option value="3">&#9733; &#9733; &#9733;</option>
+		    			 			<option value="4">&#9733; &#9733; &#9733; &#9733;</option>
+		    			  			<option value="5">&#9733; &#9733; &#9733; &#9733; &#9733;</option>
+  						 	 	</select>	   
+  						 	</div>
+  						 	
+  						 	<div class="form-group">
+								<label for="text">Analisi sul gioco:</label> 
+								<select id="gameanalysis" name="gameanalysis" th:field="${rating.gameanalysis}">
+	  				  				<option value="1">&#9733;</option>
+		    			 			<option value="2">&#9733; &#9733;</option>
+		    			  			<option value="3">&#9733; &#9733; &#9733;</option>
+		    			 			<option value="4">&#9733; &#9733; &#9733; &#9733;</option>
+		    			  			<option value="5">&#9733; &#9733; &#9733; &#9733; &#9733;</option>
+  						 	 	</select>	   
+  						 	</div>
+  						 </div> 	
+  						 
+				    	<div><button type="submit" class="login-submit btn btn-primary">Invio</button></div>
+				</form>
+			</div>
+		</div>
+	  	<footer th:replace="/fragments/base.html::footer"></footer>
+	</body>
+</html>
