@@ -1,0 +1,128 @@
+[Abballe Mirko, 566829]
+SIW Football
+
+								----------------- CASI D'USO ADMIN -----------------
+
+Inserimento di una nuova squadra
+1)L'utente Admin clicca su "Inserisci una squadra"
+2)Il sistema restituisce un form dove, attraverso vari campi, vengono descritte le informazioni della squadra in questione
+3)Al momento dell'invio il sistema restituirà, se i dati sono corretti, una pagina di ricapitolazione della squadra in questione
+
+Gestione squadre
+1)Cliccando sulla voce "Gestione squadre" il sistema restituirà una pagina contenente la lista delle squadre presenti all'interno del database
+2)Cliccando su una singola squadra, l'admin può decidere di modificare i dati della squadra o le eventuali relazioni (Allenatore, Giocatori, Trofei)
+3)Modificando i dati della squadra e premendo "Salva" sul form il sistema restituirà una pagina di ricapitolazione della squadra in questione
+
+Inserimento di un nuovo Professionista
+1)Cliccando sulla voce "Inserisci un professionista" il sistema restituirà una pagina contenente un form dove l'admin sarà in grado di inserire i dati del professionista
+2)Compilato il form, cliccando "Invio" il sistema restituirà una pagina di ricapitolazione con i dati del professionista
+
+Gestione Professionisti
+1)Cliccando sulla voce "Gestisci Professionisti", il sistema restituirà la lista di professionisti presenti sul database
+2)L'admin può decidere se rimuovere il professionista dal database cliccando sull'apposito cestino oppure modificare i dettagli del professionista cliccando sull'immagine
+3)Cliccando sull'immagine del professionista, il sistema restituirà un form dove sarà possibile modificare le informazioni del professionista ed inoltre una voce dove potrà inserire o eventualmente eliminare trofei conseguiti dal professionista stesso
+4)Compilando il form e quindi cliccando su "Salva", il sistema restituirà una pagina contenente le informazioni di ricapitolazione sul professionista
+
+Inserimento di un nuovo Trofeo
+1)Cliccando sulla voce "Inserisci un Trofeo", il sistema restituirà una pagina contenente un form dove l'admin potrà inserire i dati del trofeo
+2)Cliccando su "Salva", il sistema restituirà una pagina di ricapitolazione delle informazioni inserite sul trofeo
+
+Gestione trofei
+1)Cliccando sulla voce "Gestisci Trofei", il sistema restituirà una pagina contenente la lista di trofei presenti all'interno del database
+2)Viene offerta la possibilità di eliminare il trofeo dal database cliccando sull'apposito cestino oppure modificare le informazioni associate al trofeo stesso
+3)Cliccando sul nome del trofeo, il sistema restituirà una pagina contenente un form dove l'admin potrà modificare le informazioni associate al trofeo ed inoltre diverse voci che offrono la possibilità di modificare la squadra vincitrice del trofeo oppure i professionisti che lo hanno conseguito
+4)Compilando il form e quindi cliccando su "Salva", il sistema restituirà una pagina contenente le informazioni di ricapitolazione del trofeo
+
+Gestione Valutazioni
+1)Cliccando sulla voce "Gestisci Valutazioni", il sistema restituirà una lista di recensioni che sono state espresse dagli utenti autenticati all'interno del sistema
+2)Oltre alle informazioni presenti sulla recensione (Nome del professionista, immagine del professionista e valutazione espressa in stelle che rappresentano una valutazione numerica 
+da 1 a 5) è permesso all'admin di eliminare la recensione dal database cliccando sull'apposito cestino
+
+
+						   ----------------- CASI D'USO UTENTE GENERICO (non Autenticato) -----------------
+
+Visualizzazione classifica
+1)Il sistema restituirà una homepage "index" contenente una classifica basata sui "migliori giocatori votati dalla community" e sui "migliori allenatori votati dalla community"
+2)Cliccando sull'immagine di uno dei vari professionisti presenti sulla classifica, il sistema restituirà una pagina contenente le informazioni di ricapitolazione del professionista
+3)L'utente potrà visualizzare, dunque, le informazioni generiche del professionista ed inoltre il Palmarès dei trofei conseguiti durante la carriera dallo stesso
+
+Consultazione lista squadre
+1)L'utente, attraverso l'headbar, può scegliere di navigare la sezione "Lista Squadre"
+2)Cliccando su tale voce il sistema restituirà una pagina contenente la lista di squadre presenti all'interno del database suddivise per nazionalità di appartenenza
+3)Cliccando sullo stemma della squadra, il sistema restituirà una pagina di ricapitolazione contenente le informazioni generiche della squadre oltre al palmarès dei trofei conseguiti, all'allenatore ed alla lista dei giocatori facente parte della rosa della squadra
+
+Ricerca squadre
+1)L'utente, attraverso l'headbar, può scegliere di navigare la sezione "Ricerca Squadre"
+2)Cliccando su tale voce, il sistema restituirà un form contenente diversi campi di ricerca "per nome, per stadio e per nazione di appartenenza"
+3)Inseriti i campi di ricerca e premendo su "Ricerca", il sistema effettuerà un controllo sulla lista di squadre presenti sul database e ne restituirà una lista di squadre che soddisfano i criteri di ricerca impostati
+
+Consultazione Lista professionisti
+1)L'utente, attraverso l'headbar, può scegliere di navigare la sezione "Lista professionisti"
+2)Cliccando su tale voce, il sistema restituirà una lista di professionisti presenti all'interno del database
+3)Cliccando sull'immagine del professionista, il sistema restituirà una pagina di ricapitolazione mostrando le informazioni del professionista
+
+Ricerca professionisti
+1)L'utente, attraverso l'headbar, può scegliere di navigare la sezione "Ricerca professionisti"
+2)Cliccando su tale voce, il sistema restituirà un form contenente diversi campi di ricerca "per nome, per nazionalità e per posizione di gioco"
+3)Inseriti i campi di ricerca e premendo su "Ricerca", il sistema effettuerà un controllo sulla lista di professionisti presenti sul database e ne restituirà una lista di professionisti che soddisfano i criteri di ricerca impostati
+
+
+							----------------- CASI D'USO UTENTE AUTENTICATO -----------------
+Visualizzazione classifica
+1)Il sistema restituirà una homepage "index" contenente una classifica basata sui "migliori giocatori votati dalla community" e sui "migliori allenatori votati dalla community"
+2)Cliccando sull'immagine di uno dei vari professionisti presenti sulla classifica, il sistema restituirà una pagina contenente le informazioni di ricapitolazione del professionista
+3)L'utente autenticato potrà visualizzare, dunque, le informazioni generiche del 
+professionista ed inoltre il Palmarès dei trofei conseguiti durante la carriera
+
+Consultazione lista squadre
+1)L'utente autenticato, attraverso l'headbar, può scegliere di navigare la sezione "Lista Squadre"
+2)Cliccando su tale voce il sistema restituirà una pagina contenente la lista di squadre presenti all'interno del database suddivise per nazionalità di appartenenza
+3)Cliccando sullo stemma della squadra, il sistema restituirà una pagina di ricapitolazione contenente le informazioni generiche della squadre oltre al palmarès dei trofei conseguiti, all'allenatore ed alla lista dei giocatori facente parte della rosa della squadra
+
+Ricerca squadre
+1)L'utente autenticato, attraverso l'headbar, può scegliere di navigare la sezione "Ricerca Squadre"
+2)Cliccando su tale voce, il sistema restituirà un form contenente diversi campi di ricerca "per nome, per stadio e per nazione di appartenenza"
+3)Inseriti i campi di ricerca e premendo su "Ricerca",il sistema effettuerà un controllo sulla lista di squadre presenti sul database e ne restituirà una lista di squadre che soddisfa i criteri di ricerca impostati
+
+Consultazione Lista professionisti
+1)L'utente autenticato, attraverso l'headbar, può scegliere di navigare la sezione "Lista professionisti"
+2)Cliccando su tale voce, il sistema restituirà una lista di professionisti presenti all'interno del database
+3)Cliccando sull'immagine del professionista, il sistema restituirà una pagina di ricapitolazione mostrando le informazioni del professionista
+
+Ricerca professionisti
+1)L'utente autenticato, attraverso l'headbar, può scegliere di navigare la sezione "Ricerca professionisti"
+2)Cliccando su tale voce, il sistema restituirà un form contenente diversi campi di ricerca "per nome, per nazionalità e per posizione di gioco"
+3)Inseriti i campi di ricerca e premendo su "Ricerca", il sistema effettuerà un controllo sulla lista di professionisti presenti sul database e ne restituirà una lista di professionisti che soddisfano i criteri di ricerca impostati
+
+Valutazione Professionista
+1)L'utente autenticato, accedendo come sopra descritto alle informazioni di un singolo professionista potrà esprimere una valutazione su diversi parametri a seconda del fatto che quest'ultimo risulti essere un allenatore o un giocatore
+2)Cliccando su "Invio" il sistema conserverà la recensione all'interno del database calcolando la media dei valori attribuiti al professionista
+3)I voti, espressi dagli utenti autenticati, contribuiscono alla formazione della media globale per ciascun professionista, dando luogo a una classifica che include i primi tre professionisti in diverse categorie, 'Allenatore' o 'Giocatore'
+
+Inserimento professionisti nella lista dei preferiti
+1)L'utente autenticato, attraverso la "lista dei professionisti" può cliccare su un singolo professionista. Nella consultazione delle informazioni generali del professionista viene data la possibilità (se già non è presente nella lista dei preferiti) di aggiungerlo alla lista dei preferiti
+2)Una volta aver inserito il professionista nella lista, quest'ultimo sarà consultabile nella voce "I miei preferiti" nella sezione "Professionisti"
+3)Viene restituita una pagina con la lista dei professionisti "Allenatori" inseriti come preferiti ed una lista di professionisti "Giocatori"
+
+Inserimento squadre nella lista dei preferiti
+1)L'utente autenticato, attraverso la "lista delle squadre" può cliccare su una singola squadra. 
+Nella consultazione delle informazioni generali della squadra viene data la possibilità (se già non è presente nella lista dei preferiti) di aggiungerlo alla lista dei preferiti
+2)Una volta aver inserito il professionista nella lista, quest'ultimo sarà consultabile nella voce "I miei preferiti" nella sezione "Squadre"
+
+Rimozione professionisti dalla lista dei preferiti
+1)L'utente autenticato, attraverso la "lista dei professionisti" può cliccare su un singolo professionista. Nella consultazione delle informazioni generali del professionista viene data la possibilità (se già presente nella lista dei preferiti) di rimuoverlo dalla lista dei preferiti
+2)Il sistema restituisce la pagina di consultazione delle informazioni del professionista concedendo nuovamente la possibilità all'utente di inserire il professionista alla propria lista dei preferiti
+
+Rimozione squadre dalla lista dei preferiti
+1)L'utente autenticato, attraverso la "lista delle squadre" può cliccare su una singola squadra. Nella consultazione delle informazioni generali della squadra viene data la possibilità (se già presente nella lista dei preferiti) di rimuoverla dalla lista
+2)Il sistema restituisce la pagina di consultazione delle informazioni della squadra concedendo nuovamente la possibilità all'utente di inserire la squadra alla propria lista dei preferiti
+
+
+
+
+
+
+
+
+
+
